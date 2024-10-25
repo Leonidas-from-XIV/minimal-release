@@ -8,10 +8,9 @@ echo Auth token is $token
 
 owner="Leonidas-from-XIV"
 repo="github-api-testing"
-branch="HEAD"
+ref="heads/main"
 
-
-url="https://api.github.com/repos/${owner}/${repo}/git/ref/${branch}"
+url="https://api.github.com/repos/${owner}/${repo}/git/ref/${ref}"
 echo $url
 
 current_commit=$(curl -L \
@@ -20,4 +19,4 @@ current_commit=$(curl -L \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   "${url}")
 
-echo $current_commit
+echo $current_commit | jq .
